@@ -19,8 +19,11 @@ resource "aws_iam_role" "role" {
 data "aws_iam_policy_document" "policy_document" {
   statement {
     effect    = "Allow"
-    actions   = ["s3-object-lambda:PutObject"]
-    resources = ["*"]
+    actions   = [
+				"s3:PutObject",
+				"s3:GetObject"
+			]
+    resources = "arn:aws:s3:::*/*"
   }
 }
 
