@@ -23,7 +23,7 @@ data "aws_iam_policy_document" "policy_document" {
 				"s3:PutObject",
 				"s3:GetObject"
 			]
-    resources = "arn:aws:s3:::*/*"
+    resources = ["arn:aws:s3:::*/*"]
   }
 }
 
