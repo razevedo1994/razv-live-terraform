@@ -64,3 +64,8 @@ resource "aws_vpc_endpoint" "s3_gateway" {
 
   route_table_ids = [aws_route_table.this.id]
 }
+
+resource "aws_route_table_association" "this" {
+  subnet_id      = aws_subnet.this.id
+  route_table_id = aws_route_table.this.id
+}
