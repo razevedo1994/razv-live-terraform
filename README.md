@@ -1,12 +1,15 @@
 # Projeto de Infraestrutura AWS com Terraform
 
+![Arquitetura](./images/arquitetura.png)
+
 Este é um projeto de exemplo que será apresentado em uma live sobre o uso do Terraform para provisionar infraestrutura na AWS. O projeto consiste em criar uma infraestrutura básica na AWS, incluindo os seguintes recursos:
 
-- VPC (Virtual Private Cloud)
-- Sub-rede dentro da VPC
-- Grupo de segurança para a sub-rede e função Lambda
-- Função Lambda para execução manual
-- Bucket S3 para armazenar dados
+- VPC (Virtual Private Cloud);
+- Sub-rede dentro da VPC;
+- Grupo de segurança para a sub-rede e função Lambda;
+- Gateway Endpoint para trafegar dados entre a Lambda dentro da Sub-rede e o Bucket s3;
+- Função Lambda para execução manual;
+- Bucket S3 para armazenar dados;
 
 ## Pré-requisitos
 
