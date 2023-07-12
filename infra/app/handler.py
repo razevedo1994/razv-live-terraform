@@ -4,7 +4,7 @@ import datetime
 
 def lambda_handler(event, context):
     s3 = boto3.resource('s3')
-    bucket_name = 'nome-do-seu-bucket'
+    bucket_name = 'live-terraform'
     landing_zone_prefix = 'landing-zone/logs/'
     
     current_date = datetime.date.today().strftime('%Y-%m-%d')
