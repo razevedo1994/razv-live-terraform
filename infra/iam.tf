@@ -21,9 +21,13 @@ data "aws_iam_policy_document" "policy_document" {
     effect    = "Allow"
     actions   = [
 				"s3:PutObject",
-				"s3:GetObject"
+				"s3:GetObject",
+        "ec2:CreateNetworkInterface"
 			]
-    resources = ["arn:aws:s3:::*/*"]
+    resources = [
+      "arn:aws:s3:::*/*",
+      "arn:aws:ec2:::*/*",
+      ]
   }
 }
 
