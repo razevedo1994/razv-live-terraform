@@ -18,16 +18,52 @@ resource "aws_iam_role" "role" {
 
 data "aws_iam_policy_document" "policy_document" {
   statement {
+    sid       = "AllowS3Access"
     effect    = "Allow"
     actions   = [
-				"s3:PutObject",
-				"s3:GetObject",
-        "ec2:CreateNetworkInterface"
-			]
+      "s3:PutObject",
+      "s3:GetObject",
+    ]
     resources = [
-      "arn:aws:s3:::*/*",
-      "arn:aws:ec2:::*/*",
-      ]
+      "arn:aws:s3:::live-terraform/*",
+    ]
+  }
+
+  statement {
+    sid       = "AllowS3ListAccess"
+    effect    = "Allow"
+    actions   = [
+      "s3:ListBucket"
+    ]
+    resources = [
+      "arn:aws:s3:::live-terraform",
+    ]
+  }
+
+  statement {
+    sid       = "AllowEC2Access"
+    effect    = "Allow"
+    actions   = [
+      "ec2:CreateNetworkInterface",
+      "ec2:DescribeNetworkInterfaces",
+      "ec2:DeleteNetworkInterface"
+    ]
+    resources = [
+      "*",
+    ]
+  }
+
+  statement {
+    sid       = "AllowCloudWatchLogsAccess"
+    effect    = "Allow"
+    actions   = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents",
+    ]
+    resources = [
+      "arn:aws:logs:*:*:*",
+    ]
   }
 }
 
