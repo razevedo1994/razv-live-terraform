@@ -22,4 +22,10 @@ resource "aws_lambda_function" "live_lambda_example" {
     subnet_ids            = [aws_subnet.this.id]
     security_group_ids  = [aws_security_group.this.id] 
   }
+
+  environment {
+    variables = {
+      S3_BUCKET = aws_s3_bucket.this.bucket
+    }
+  }
 }
