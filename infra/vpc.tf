@@ -37,3 +37,30 @@ resource "aws_security_group" "this" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_internet_gateway" "this" {
+  vpc_id = aws_vpc.this.id
+
+  tags = {
+    Name = "MainInternetGateway"
+  }
+}
+
+resource "aws_route_table" "this" {
+  vpc_id = aws_vpc.this.id
+  
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.this.id
+  }
+}
+
+resource "aws_vpc_endpoint" "s3_gateway" {
+  vpc_id       = aws_vpc.this.id
+  service_name = "com.amazonaws.us-east-1.s3"
+
+  vpc_endpoint_type = "Gateway"
+
+  route_table_ids = [aws_route_table.this.id]
+}
