@@ -1,8 +1,8 @@
 resource "aws_s3_bucket" "this" {
-  bucket = "live-terraform"
+  bucket = var.s3_bucket_name
 
   tags = {
-    Name = "live-terraform-bucket"
+    Name = "live-terraform"
   }
 }
 
